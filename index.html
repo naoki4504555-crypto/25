@@ -2360,6 +2360,17 @@ function play(card){
   checkHeartAndDaggerCall();
 }
 
+function restartCardEnterAnimation(img, enterClass){
+  if(!img) return;
+  img.classList.remove("card-enter-player", "card-enter-enemy");
+  // 場に出るカードのアニメーションは、残りカードパネルの有無ではなく、
+  // VS欄のカード画像そのものを基準に必ず発火させる。
+  // フリーバトル専用版では自分側の残りカードパネルを削除しているため、
+  // .panel.player の表示状態に依存すると、あなた側だけ演出対象から外れてしまう。
+  void img.offsetWidth;
+  img.classList.add(enterClass);
+}
+
 function showCards(pCard, eCard){
   resetCardClasses();
   const pImg = document.getElementById("playerImg");
@@ -2370,14 +2381,8 @@ function showCards(pCard, eCard){
   document.getElementById("playerName").innerText = cardLabel(pCard);
   document.getElementById("enemyName").innerText = cardLabel(eCard);
 
-  const playerPanel = document.querySelector(".panel.player");
-  const playerPanelVisible = playerPanel && getComputedStyle(playerPanel).display !== "none";
-  if(playerPanelVisible){
-    void pImg.offsetWidth;
-    pImg.classList.add("card-enter-player");
-  }
-  void eImg.offsetWidth;
-  eImg.classList.add("card-enter-enemy");
+  restartCardEnterAnimation(pImg, "card-enter-player");
+  restartCardEnterAnimation(eImg, "card-enter-enemy");
   playSound("card");
   vibrate("card");
 }
