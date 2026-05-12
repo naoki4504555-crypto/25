@@ -1434,6 +1434,8 @@ button{
   --remain-image-radius: 4px;
   --remain-count-size: 15px;
   --remain-count-y: 4px;
+  --remain-count-weight: 900;
+  --remain-count-font: system-ui,-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
   --remain-label-size: 11px;
   --remain-gap: 6px;
   --hd-call-font-size: 20px;
@@ -1583,6 +1585,18 @@ button{
   overflow: hidden !important;
 }
 
+/* 残りカードUIの文字描画共通ルール。
+   button要素とdiv要素でブラウザ既定フォントが分かれないよう、
+   相手側・自分側とも同じフォントスタック/ウェイトから数字を描画する。 */
+#controls .card-btn,
+.controls .card-btn,
+.mini-card,
+.panel.enemy .mini-card{
+  font-family: var(--remain-count-font) !important;
+  font-weight: var(--remain-count-weight) !important;
+}
+
+
 #controls .card-btn img,
 .controls .card-btn img,
 .mini-card img,
@@ -1629,9 +1643,13 @@ button{
   display: inline-block !important;
   margin: 0 0 0 2px !important;
   color: #ffe784 !important;
+  font-family: var(--remain-count-font) !important;
   font-size: var(--remain-count-size) !important;
   line-height: 1 !important;
-  font-weight: 1000 !important;
+  font-weight: var(--remain-count-weight) !important;
+  font-variation-settings: "wght" var(--remain-count-weight) !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: geometricPrecision !important;
   white-space: nowrap !important;
 }
 
@@ -1867,11 +1885,11 @@ button{
       <div class="panel enemy">
         <h3>相手の残りカード</h3>
         <div class="counts">
-          <div id="eSokkooDaggerBox" data-card="ソッコーダガー" class="mini-card dagger-card sokkoo-dagger-card sokkoo-mini hidden"><img src="sokkoo_dagger.jpeg"><span><b id="eSokkooDagger">1</b></span></div>
-          <div data-card="短剣" class="mini-card dagger-card"><img src="dagger.jpeg"><span><b id="eDagger">5</b></span></div>
-          <div data-card="盾" class="mini-card shield-card"><img src="shield.jpeg"><span><b id="eShield">5</b></span></div>
-          <div data-card="心臓" class="mini-card heart-card"><img src="heart.jpeg"><span><b id="eHeart">5</b></span></div>
-          <div id="eSokkooHeartBox" data-card="ソッコーハート" class="mini-card heart-card sokkoo-heart-card sokkoo-mini hidden"><img src="sokkoo_heart.jpeg"><span><b id="eSokkooHeart">1</b></span></div>
+          <div id="eSokkooDaggerBox" data-card="ソッコーダガー" class="mini-card dagger-card sokkoo-dagger-card sokkoo-mini hidden"><img src="sokkoo_dagger.jpeg"><span><b id="eSokkooDagger" class="remain-count">1</b></span></div>
+          <div data-card="短剣" class="mini-card dagger-card"><img src="dagger.jpeg"><span><b id="eDagger" class="remain-count">5</b></span></div>
+          <div data-card="盾" class="mini-card shield-card"><img src="shield.jpeg"><span><b id="eShield" class="remain-count">5</b></span></div>
+          <div data-card="心臓" class="mini-card heart-card"><img src="heart.jpeg"><span><b id="eHeart" class="remain-count">5</b></span></div>
+          <div id="eSokkooHeartBox" data-card="ソッコーハート" class="mini-card heart-card sokkoo-heart-card sokkoo-mini hidden"><img src="sokkoo_heart.jpeg"><span><b id="eSokkooHeart" class="remain-count">1</b></span></div>
         
         
         </div>
@@ -1913,19 +1931,19 @@ button{
 
 <section id="controls" class="controls normal-layout">
       <button id="btnSokkooDagger" type="button" data-card="ソッコーダガー" class="card-btn dagger-card sokkoo-dagger-card hidden">
-        <img src="sokkoo_dagger.jpeg"><span><b id="cSD">1</b></span>
+        <img src="sokkoo_dagger.jpeg"><span><b id="cSD" class="remain-count">1</b></span>
       </button>
       <button id="btnDagger" type="button" data-card="短剣" class="card-btn dagger-card">
-        <img src="dagger.jpeg"><span><b id="cDagger">5</b></span>
+        <img src="dagger.jpeg"><span><b id="cDagger" class="remain-count">5</b></span>
       </button>
       <button id="btnShield" type="button" data-card="盾" class="card-btn shield-card">
-        <img src="shield.jpeg"><span><b id="cShield">5</b></span>
+        <img src="shield.jpeg"><span><b id="cShield" class="remain-count">5</b></span>
       </button>
       <button id="btnHeart" type="button" data-card="心臓" class="card-btn heart-card">
-        <img src="heart.jpeg"><span><b id="cHeart">5</b></span>
+        <img src="heart.jpeg"><span><b id="cHeart" class="remain-count">5</b></span>
       </button>
       <button id="btnSokkooHeart" type="button" data-card="ソッコーハート" class="card-btn heart-card sokkoo-heart-card hidden">
-        <img src="sokkoo_heart.jpeg"><span><b id="cSH">1</b></span>
+        <img src="sokkoo_heart.jpeg"><span><b id="cSH" class="remain-count">1</b></span>
       </button>
       <button id="callBtn" type="button" class="call-btn" data-action="call">
         ハート＆ダガー<br>コール！
