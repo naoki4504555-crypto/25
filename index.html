@@ -16,7 +16,7 @@ try{
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>ハート＆ダガー</title>
 <style>
-:root{--blue:#39a8ff;--red:#e04248;--gold:#f0c35a;}
+:root{--blue:#39a8ff;--red:#e04248;--gold:#f0c35a;--hd-card-art-radius:0px;}
 *{box-sizing:border-box}
 html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
 body{margin:0;
@@ -46,7 +46,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .player .nameplate{background:linear-gradient(#1c6bd2,#083b83);border:3px solid #45b8ff}
 .enemy .nameplate{background:linear-gradient(#d94444,#7d1414);border:3px solid #ff6161}
 .card-stage{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding-top:20px}
-.card-img{width:min(88%,270px);aspect-ratio:63/89;object-fit:cover;border-radius:14px;box-shadow:0 16px 26px rgba(0,0,0,.55);background:#fff}
+.card-img{width:min(88%,270px);aspect-ratio:63/89;object-fit:cover;border-radius:var(--hd-card-art-radius);box-shadow:0 16px 26px rgba(0,0,0,.55);background:#fff}
 .card-label{min-width:180px;padding:10px 22px;border-radius:6px;font-size:26px;font-weight:900;text-align:center}
 .player .card-label{background:linear-gradient(#1674d6,#083d89)}
 .enemy .card-label{background:linear-gradient(#d94545,#8e1616)}
@@ -57,7 +57,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 /* removed fixed controls rule */
 
 .card-btn,.call-btn{min-height:142px;border-radius:16px;background:rgba(255,255,255,.08);border:3px solid rgba(255,255,255,.25);color:#fff;padding:8px;box-shadow:0 10px 18px rgba(0,0,0,.3)}
-.card-btn img{height:94px;aspect-ratio:63/89;object-fit:cover;border-radius:8px;display:block;margin:0 auto 5px}
+.card-btn img{height:94px;aspect-ratio:63/89;object-fit:cover;border-radius:var(--hd-card-art-radius);display:block;margin:0 auto 5px}
 .card-btn span{display:block;font-size:23px;font-weight:900}
 .card-btn.dagger{border-color:#39a8ff}.card-btn.shield{border-color:#68cf55}.card-btn.heart{border-color:#ff6d83}
 .call-btn{background:linear-gradient(135deg,#ffe990,#b56f0d);color:#2a1007;font-size:24px;font-weight:1000;border-color:#fff0a8}
@@ -601,7 +601,7 @@ body {
 .play-area .card img,
 .card-img{
   border: 2px solid #fff !important;
-  border-radius: 10px !important;
+  border-radius: var(--hd-card-art-radius) !important;
 }
 
 
@@ -1431,7 +1431,7 @@ button{
   --remain-card-radius: 16px;
   --remain-card-pad: 4px;
   --remain-card-img-h: 48px;
-  --remain-image-radius: 4px;
+  --remain-image-radius: var(--hd-card-art-radius);
   --remain-count-size: 15px;
   --remain-count-y: 4px;
   --remain-count-weight: 900;
@@ -1606,7 +1606,7 @@ button{
   max-width: 100% !important;
   aspect-ratio: 63 / 89 !important;
   object-fit: contain !important;
-  /* 画像データは加工せず、カード画像の白フチ外周だけが自然に丸く見える最小半径にする。 */
+  /* カードPNG側に角丸が入っているため、システム側では画像を丸めない。 */
   border-radius: var(--remain-image-radius) !important;
   clip-path: none !important;
   display: block !important;
@@ -1755,7 +1755,7 @@ button{
     --remain-row-w: var(--hd-game-row-w);
     --remain-card-h: 88px;
     --remain-card-img-h: 48px;
-    --remain-image-radius: 4px;
+    --remain-image-radius: var(--hd-card-art-radius);
     --remain-card-radius: 16px;
     --remain-count-size: 15px;
     --remain-count-y: 4px;
@@ -1885,11 +1885,11 @@ button{
       <div class="panel enemy">
         <h3>相手の残りカード</h3>
         <div class="counts">
-          <div id="eSokkooDaggerBox" data-card="ソッコーダガー" class="mini-card dagger-card sokkoo-dagger-card sokkoo-mini hidden"><img src="sokkoo_dagger.jpeg"><span><b id="eSokkooDagger" class="remain-count">1</b></span></div>
-          <div data-card="短剣" class="mini-card dagger-card"><img src="dagger.jpeg"><span><b id="eDagger" class="remain-count">5</b></span></div>
-          <div data-card="盾" class="mini-card shield-card"><img src="shield.jpeg"><span><b id="eShield" class="remain-count">5</b></span></div>
-          <div data-card="心臓" class="mini-card heart-card"><img src="heart.jpeg"><span><b id="eHeart" class="remain-count">5</b></span></div>
-          <div id="eSokkooHeartBox" data-card="ソッコーハート" class="mini-card heart-card sokkoo-heart-card sokkoo-mini hidden"><img src="sokkoo_heart.jpeg"><span><b id="eSokkooHeart" class="remain-count">1</b></span></div>
+          <div id="eSokkooDaggerBox" data-card="ソッコーダガー" class="mini-card dagger-card sokkoo-dagger-card sokkoo-mini hidden"><img src="sokkoo_dagger.png"><span><b id="eSokkooDagger" class="remain-count">1</b></span></div>
+          <div data-card="短剣" class="mini-card dagger-card"><img src="dagger.png"><span><b id="eDagger" class="remain-count">5</b></span></div>
+          <div data-card="盾" class="mini-card shield-card"><img src="shield.png"><span><b id="eShield" class="remain-count">5</b></span></div>
+          <div data-card="心臓" class="mini-card heart-card"><img src="heart.png"><span><b id="eHeart" class="remain-count">5</b></span></div>
+          <div id="eSokkooHeartBox" data-card="ソッコーハート" class="mini-card heart-card sokkoo-heart-card sokkoo-mini hidden"><img src="sokkoo_heart.png"><span><b id="eSokkooHeart" class="remain-count">1</b></span></div>
         
         
         </div>
@@ -1931,19 +1931,19 @@ button{
 
 <section id="controls" class="controls normal-layout">
       <button id="btnSokkooDagger" type="button" data-card="ソッコーダガー" class="card-btn dagger-card sokkoo-dagger-card hidden">
-        <img src="sokkoo_dagger.jpeg"><span><b id="cSD" class="remain-count">1</b></span>
+        <img src="sokkoo_dagger.png"><span><b id="cSD" class="remain-count">1</b></span>
       </button>
       <button id="btnDagger" type="button" data-card="短剣" class="card-btn dagger-card">
-        <img src="dagger.jpeg"><span><b id="cDagger" class="remain-count">5</b></span>
+        <img src="dagger.png"><span><b id="cDagger" class="remain-count">5</b></span>
       </button>
       <button id="btnShield" type="button" data-card="盾" class="card-btn shield-card">
-        <img src="shield.jpeg"><span><b id="cShield" class="remain-count">5</b></span>
+        <img src="shield.png"><span><b id="cShield" class="remain-count">5</b></span>
       </button>
       <button id="btnHeart" type="button" data-card="心臓" class="card-btn heart-card">
-        <img src="heart.jpeg"><span><b id="cHeart" class="remain-count">5</b></span>
+        <img src="heart.png"><span><b id="cHeart" class="remain-count">5</b></span>
       </button>
       <button id="btnSokkooHeart" type="button" data-card="ソッコーハート" class="card-btn heart-card sokkoo-heart-card hidden">
-        <img src="sokkoo_heart.jpeg"><span><b id="cSH" class="remain-count">1</b></span>
+        <img src="sokkoo_heart.png"><span><b id="cSH" class="remain-count">1</b></span>
       </button>
       <button id="callBtn" type="button" class="call-btn" data-action="call">
         ハート＆ダガー<br>コール！
@@ -1988,11 +1988,11 @@ let sokkooMode = false;
 const AI_CALL_DELAY = 1500;
 
 const CARD_IMAGES = {
-  "短剣": "dagger.jpeg",
-  "盾": "shield.jpeg",
-  "心臓": "heart.jpeg",
-  "ソッコーダガー": "sokkoo_dagger.jpeg",
-  "ソッコーハート": "sokkoo_heart.jpeg",
+  "短剣": "dagger.png",
+  "盾": "shield.png",
+  "心臓": "heart.png",
+  "ソッコーダガー": "sokkoo_dagger.png",
+  "ソッコーハート": "sokkoo_heart.png",
   "裏": "card_back.jpeg"
 };
 
