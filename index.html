@@ -46,7 +46,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .player .nameplate{background:linear-gradient(#1c6bd2,#083b83);border:3px solid #45b8ff}
 .enemy .nameplate{background:linear-gradient(#d94444,#7d1414);border:3px solid #ff6161}
 .card-stage{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding-top:20px}
-.card-img{width:min(88%,270px);aspect-ratio:63/89;object-fit:cover;border-radius:var(--hd-card-art-radius);box-shadow:0 16px 26px rgba(0,0,0,.55);background:#fff}
+.card-img{width:min(88%,270px);aspect-ratio:63/89;object-fit:contain;border-radius:0;box-shadow:0 16px 26px rgba(0,0,0,.55);background:transparent}
 .card-label{min-width:180px;padding:10px 22px;border-radius:6px;font-size:26px;font-weight:900;text-align:center}
 .player .card-label{background:linear-gradient(#1674d6,#083d89)}
 .enemy .card-label{background:linear-gradient(#d94545,#8e1616)}
@@ -539,14 +539,17 @@ body {
   100% { opacity: 0; background: transparent; }
 }
 
-/* ===== さらに鋭利なカード角丸・自分/相手共通 ===== */
+/* ===== カードPNG表示ルール =====
+   カード画像は角丸込みの完成PNGをそのまま表示する。
+   システム側ではカード画像に背景色・角丸・白枠を付けない。 */
 .controls .card-btn{
   border-radius: 3px !important;
 }
 
 .controls .card-btn img,
 .card-img{
-  border-radius: 3px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
 }
 
 /* ===== モード選択ボタン画像化 ===== */
@@ -597,11 +600,14 @@ body {
   }
 }
 
-/* 場のカード微調整 */
+/* 場のカード微調整
+   VS大カードは完成PNGの透明角を活かすため、白い矩形背景/白枠/追加角丸を付けない。 */
 .play-area .card img,
 .card-img{
-  border: 2px solid #fff !important;
-  border-radius: var(--hd-card-art-radius) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  object-fit: contain !important;
 }
 
 
