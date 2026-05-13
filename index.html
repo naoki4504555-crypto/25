@@ -1909,6 +1909,59 @@ button{
   filter:brightness(.65) drop-shadow(0 12px 16px rgba(0,0,0,.5));
 }
 
+
+
+/* ===== VSカード表示の根本ルール =====
+   VS欄の大きいカードは「完成済みPNGをそのまま置く」部品として統一する。
+   角丸・白背景・白枠・矩形シャドウはここでは一切作らない。
+   初期表示の裏面もPNG化し、透明角が見える状態にする。 */
+.card-stage,
+#playerImg.card-img,
+#enemyImg.card-img{
+  background: transparent !important;
+}
+#playerImg.card-img,
+#enemyImg.card-img{
+  display: block !important;
+  width: min(88%, 270px);
+  height: auto !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  filter: drop-shadow(0 16px 18px rgba(0,0,0,.55));
+}
+#playerImg.card-img.card-win,
+#enemyImg.card-img.card-win{
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#playerImg.card-img.card-lose,
+#enemyImg.card-img.card-lose{
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: brightness(.65) drop-shadow(0 12px 16px rgba(0,0,0,.5));
+}
+@media(max-width:760px){
+  #playerImg.card-img,
+  #enemyImg.card-img{
+    width: min(72%, 210px);
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1957,7 +2010,7 @@ button{
       <div class="side player">
         <div class="nameplate">あなた</div>
         <div class="card-stage">
-          <img id="playerImg" class="card-img" src="card_back.jpeg" alt="あなたのカード">
+          <img id="playerImg" class="card-img" src="card_back.png" alt="あなたのカード">
           <div id="playerResultLabel" class="battle-result-label"></div>
           <div id="playerName" class="card-label">未選択</div>
         </div>
@@ -1968,7 +2021,7 @@ button{
       <div class="side enemy">
         <div class="nameplate">相手</div>
         <div class="card-stage">
-          <img id="enemyImg" class="card-img" src="card_back.jpeg" alt="相手のカード">
+          <img id="enemyImg" class="card-img" src="card_back.png" alt="相手のカード">
           <div id="enemyResultLabel" class="battle-result-label"></div>
           <div id="enemyName" class="card-label">未選択</div>
         </div>
@@ -2050,7 +2103,7 @@ const CARD_IMAGES = {
   "心臓": "heart.png",
   "ソッコーダガー": "sokkoo_dagger.png",
   "ソッコーハート": "sokkoo_heart.png",
-  "裏": "card_back.jpeg"
+  "裏": "card_back.png"
 };
 
 const REMAINING_CARD_CLASS_MAP = {
